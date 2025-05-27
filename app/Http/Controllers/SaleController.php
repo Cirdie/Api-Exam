@@ -4,6 +4,7 @@ namespace App\Http\Controllers;
 
 use App\Models\Sale;
 use Illuminate\Http\Request;
+use Illuminate\Support\Facades\DB;
 
 class SaleController extends Controller
 {
@@ -35,4 +36,14 @@ class SaleController extends Controller
     public function destroy($id) {
         return response()->json(['deleted' => Sale::destroy($id)]);
     }
+
+    public function totalSalesAmount()
+    {
+        $total = DB::table('sales')->sum('total_amount');
+
+        return response()->json([
+            'total_sales_amount' => $total
+        ]);
+    }
+
 }

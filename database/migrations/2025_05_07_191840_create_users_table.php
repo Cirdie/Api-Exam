@@ -13,7 +13,7 @@ return new class extends Migration
             $table->increments('user_id');
             $table->string('username', 255)->unique();
             $table->string('password', 255);
-            $table->char('role', 1)->default('C');
+            $table->enum('role', ['M', 'C', 'A', 'S'])->default('C');
             $table->timestamp('created_at')->useCurrent();
         });
     }
